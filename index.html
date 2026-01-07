@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MenuPe - Cartas Digitales</title>
+    
+    <script>
+      // Definición segura de entorno
+      window.process = { env: { NODE_ENV: 'production' } };
+      
+      // Capturador de errores globales mejorado
+      window.onerror = function(msg, url, line, col, error) {
+        console.error("Error crítico de la aplicación:", msg, url, line, col, error);
+        const root = document.getElementById('root');
+        if (root) {
+          root.innerHTML = '<div style="padding:40px; color:red; font-family:sans-serif; text-align:center; background:#fff5f5; border:1px solid #feb2b2; margin:20px; border-radius:12px; max-width: 600px; margin: 40px auto; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">' +
+            '<h3 style="margin-top:0;">¡Ups! Algo salió mal</h3>' +
+            '<p style="color:#666; font-size:14px;">La aplicación MenuPe no pudo iniciar. Esto suele ser un problema de carga de módulos.</p>' +
+            '<button onclick="window.location.reload()" style="background:#ef4444; color:white; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; margin-top:10px;">Reintentar carga</button>' +
+            '<pre style="text-align:left; background:#fff; padding:15px; border-radius:8px; font-size:10px; overflow-x:auto; margin-top:20px; border:1px solid #eee; color: #888;">' + 
+            (error ? error.stack : msg) + 
+            '</pre>' +
+            '</div>';
+        }
+      };
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
+    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3",
+    "@google/genai": "https://esm.sh/@google/genai@1.3.0",
+    "@supabase/supabase-client": "https://esm.sh/@supabase/supabase-client@2.39.7",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+    <style>
+      body { 
+        font-family: 'Inter', sans-serif; 
+        margin: 0; 
+        padding: 0; 
+        background-color: #f8fafc;
+      }
+      #root { min-height: 100vh; }
+      .scrollbar-hide::-webkit-scrollbar { display: none; }
+      .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

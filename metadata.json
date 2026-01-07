@@ -1,0 +1,7 @@
+{
+  "name": "MenuPe - Cartas Digitales para Restaurantes",
+  "description": "Una plataforma integral para que los restaurantes peruanos creen, personalicen y compartan sus cartas digitales con pedidos directos a WhatsApp.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

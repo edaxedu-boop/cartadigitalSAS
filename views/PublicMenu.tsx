@@ -245,9 +245,12 @@ const PublicMenu: React.FC<PublicMenuProps> = ({ state, slug: propSlug }) => {
   return (
     <div className="min-h-screen bg-slate-50 pb-32">
       {/* Botón de acceso para dueños discreto */}
-      <Link to="/login" className="fixed top-4 right-4 z-[60] bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-[10px] font-bold border border-white/20 uppercase tracking-widest">
-        Acceder
-      </Link>
+      <a
+        href="https://www.cartadigital.site/#/login"
+        className="fixed top-4 right-4 z-[60] bg-black/40 backdrop-blur-md text-white px-4 py-2 rounded-full text-[10px] font-bold border border-white/20 uppercase tracking-widest hover:bg-black/60 transition shadow-lg"
+      >
+        ACCEDER
+      </a>
 
       {/* Hero Section (Estático) */}
       <div className="h-56 md:h-72 bg-slate-200 relative">

@@ -5,10 +5,14 @@ import CheckoutForm, { CheckoutData } from '../components/CheckoutForm';
 
 interface PublicMenuProps {
   state: AppState;
+  slug?: string; // Prop opcional para subdominios
 }
 
-const PublicMenu: React.FC<PublicMenuProps> = ({ state }) => {
-  const { slug } = useParams();
+const PublicMenu: React.FC<PublicMenuProps> = ({ state, slug: propSlug }) => {
+  const params = useParams();
+  // Usar el slug prop si existe (subdominio), sino el de la URL
+  const slug = propSlug || params.slug;
+
   const restaurant = state.restaurants.find(r => r.slug === slug);
 
   // Estados del carrito y UI

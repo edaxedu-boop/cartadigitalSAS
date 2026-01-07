@@ -403,6 +403,22 @@ const App: React.FC = () => {
     );
   }
 
+  // Lógica de Subdominios
+  const hostname = window.location.hostname;
+  const parts = hostname.split('.');
+  // Verifica si es un subdominio (ej: polleria.midominio.com)
+  // Ignora localhost y www
+  const isSubdomain = parts.length > 2 && parts[0] !== 'www' && !hostname.includes('localhost');
+
+  if (isSubdomain && !loading) {
+    const subdomain = parts[0];
+    return (
+      <HashRouter>
+        <PublicMenu state={state} slug={subdomain} />
+      </HashRouter>
+    );
+  }
+
   return (
     <HashRouter>
       <Routes>

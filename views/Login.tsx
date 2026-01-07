@@ -171,18 +171,7 @@ const Login: React.FC<LoginProps> = ({ login }) => {
           )}
         </button>
 
-        {/* Información de ayuda */}
-        <div className="mt-6 p-4 bg-slate-50 rounded-2xl">
-          <p className="text-xs text-slate-600 font-medium mb-2">
-            <strong>Credenciales de ejemplo:</strong>
-          </p>
-          <p className="text-xs text-slate-500">
-            📧 Super Admin: <code className="bg-white px-2 py-1 rounded">admin@menupe.com</code>
-          </p>
-          <p className="text-xs text-slate-500 mt-1">
-            🏪 Restaurant: <code className="bg-white px-2 py-1 rounded">sabor@restaurant.com</code>
-          </p>
-        </div>
+
 
         {/* Link para regresar */}
         <div className="text-center mt-6">

@@ -15,6 +15,28 @@ const PublicMenu: React.FC<PublicMenuProps> = ({ state, slug: propSlug }) => {
 
   const restaurant = state.restaurants.find(r => r.slug === slug);
 
+  // Update Meta Tags for SEO/Sharing
+  useEffect(() => {
+    if (restaurant) {
+      document.title = `${restaurant.name} - Carta Digital`;
+
+      const updateMeta = (prop: string, content: string) => {
+        let meta = document.querySelector(`meta[property="${prop}"]`);
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.setAttribute('property', prop);
+          document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', content || '');
+      };
+
+      updateMeta('og:title', restaurant.name);
+      updateMeta('og:description', restaurant.description || `Mira nuestra carta digital y pide por WhatsApp en ${restaurant.name}.`);
+      updateMeta('og:image', restaurant.logoUrl || 'https://cartadigital.site/og-image.png');
+      updateMeta('og:url', window.location.href);
+    }
+  }, [restaurant]);
+
   // Estados del carrito y UI
   const [cart, setCart] = useState<CartItem[]>([]);
   const [showCart, setShowCart] = useState(false);

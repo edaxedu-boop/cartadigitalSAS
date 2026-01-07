@@ -230,9 +230,13 @@ const App: React.FC = () => {
 
       if (!error) {
         await loadData();
+      } else {
+        console.error('Error updating restaurant (DB):', error);
+        alert('Error al actualizar datos: ' + error.message);
       }
     } catch (err) {
       console.error('Error updating restaurant:', err);
+      alert('Error de conexión o inesperado al guardar.');
     }
   };
   const deleteRestaurant = async (id: string) => {

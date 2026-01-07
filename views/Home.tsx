@@ -22,12 +22,14 @@ const Home: React.FC = () => {
             <div className="flex items-center gap-6">
               <button onClick={() => scrollTo('precios')} className="text-slate-600 font-medium hover:text-red-600 transition hidden md:block">Precios</button>
               <Link to="/login" className="text-slate-600 font-medium hover:text-red-600 transition">Entrar</Link>
-              <Link
-                to="/login"
+              <a
+                href="https://wa.me/51973282798?text=Hola,%20quiero%20digitalizar%20mi%20restaurante%20con%20MenuPe"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition shadow-lg shadow-red-100"
               >
                 Comenzar
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -45,18 +47,22 @@ const Home: React.FC = () => {
             Crea el menú de tu restaurante, recibe pedidos directos a WhatsApp y aumenta tus ventas con MenuPe. Diseñado para el sabor peruano.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/login"
+            <a
+              href="https://wa.me/51973282798?text=Hola,%20quiero%20crear%20mi%20carta%20digital%20gratis"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-red-600 text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-red-700 shadow-xl shadow-red-200 transition-all hover:-translate-y-1"
             >
               Crear mi Carta Gratis
-            </Link>
-            <Link
-              to="/menu/el-sabor-peruano"
+            </a>
+            <a
+              href="https://rincon.cartadigital.site"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-white border-2 border-slate-200 text-slate-700 px-8 py-4 rounded-xl text-lg font-bold hover:bg-slate-50 transition-all hover:-translate-y-1"
             >
               Ver Demo Real
-            </Link>
+            </a>
           </div>
 
           <div className="mt-16 relative">
@@ -172,7 +178,7 @@ const Home: React.FC = () => {
               <ul className="space-y-4 text-slate-400">
                 <li><Link to="/login" className="hover:text-white transition">Ingresar</Link></li>
                 <li><Link to="/login" className="hover:text-white transition">Panel de Control</Link></li>
-                <li><Link to="/menu/el-sabor-peruano" className="hover:text-white transition">Demo en Vivo</Link></li>
+                <li><a href="https://rincon.cartadigital.site" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">Demo en Vivo</a></li>
               </ul>
             </div>
             <div>

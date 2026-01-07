@@ -66,7 +66,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ restaurant, cart, total, on
         }
 
         if (orderType === 'delivery') {
-            if (!phone.trim() || !address.trim() || !deliveryZone) {
+            const isZoneRequired = deliveryZones.length > 0;
+            if (!phone.trim() || !address.trim() || (isZoneRequired && !deliveryZone)) {
                 alert('Por favor completa todos los campos de delivery');
                 return;
             }
@@ -195,22 +196,24 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ restaurant, cart, total, on
                                 />
                             </div>
 
-                            <div>
-                                <label className="block text-sm font-bold text-slate-600 mb-2">Zona de Delivery *</label>
-                                <select
-                                    value={deliveryZone}
-                                    onChange={e => setDeliveryZone(e.target.value)}
-                                    required
-                                    className="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-red-500 outline-none"
-                                >
-                                    <option value="">Selecciona tu zona</option>
-                                    {deliveryZones.map(zone => (
-                                        <option key={zone.id} value={zone.id}>
-                                            {zone.name} (+S/ {zone.price.toFixed(2)})
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
+                            {deliveryZones.length > 0 && (
+                                <div>
+                                    <label className="block text-sm font-bold text-slate-600 mb-2">Zona de Delivery *</label>
+                                    <select
+                                        value={deliveryZone}
+                                        onChange={e => setDeliveryZone(e.target.value)}
+                                        required
+                                        className="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-red-500 outline-none"
+                                    >
+                                        <option value="">Selecciona tu zona</option>
+                                        {deliveryZones.map(zone => (
+                                            <option key={zone.id} value={zone.id}>
+                                                {zone.name} (+S/ {zone.price.toFixed(2)})
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            )}
                         </>
                     )}
 

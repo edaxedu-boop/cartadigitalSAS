@@ -863,55 +863,64 @@ const Dashboard: React.FC<DashboardProps> = ({
             </form>
           </div>
         )}
-        {activeTab === 'compartir' && (
-          <div className="bg-white p-10 rounded-3xl border text-center max-w-md mx-auto">
-            <h3 className="text-xl font-black text-slate-800 mb-6">Comparte tu Menú</h3>
+        {activeTab === 'compartir' && (() => {
+          // Lógica para URL limpia
+          const isLocal = window.location.hostname.includes('localhost');
+          const marketUrl = isLocal
+            ? `${window.location.origin}/#/menu/${currentRestaurant.slug}`
+            : `https://${currentRestaurant.slug}.cartadigital.site`;
 
-            <img
-              src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(window.location.origin + '/#/menu/' + currentRestaurant.slug)}`}
-              className="mx-auto mb-6 rounded-xl border-2 border-slate-100 p-2 w-48 h-48"
-              alt="Código QR"
-            />
+          return (
+            <div className="bg-white p-10 rounded-3xl border text-center max-w-md mx-auto">
+              <h3 className="text-xl font-black text-slate-800 mb-6">Comparte tu Menú</h3>
 
-            <div className="bg-slate-50 p-4 rounded-2xl mb-6 text-left">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Enlace directo</label>
-              <div className="flex gap-2">
-                <input
-                  readOnly
-                  value={`${window.location.origin}/#/menu/${currentRestaurant.slug}`}
-                  className="flex-1 bg-white border border-slate-200 p-3 rounded-xl text-sm font-semibold text-slate-600 outline-none select-all"
-                  onClick={(e) => e.currentTarget.select()}
-                />
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(`${window.location.origin}/#/menu/${currentRestaurant.slug}`);
-                    alert('✅ ¡Enlace copiado!');
-                  }}
-                  className="bg-slate-900 text-white px-4 rounded-xl font-bold text-sm hover:bg-black transition"
-                  title="Copiar enlace"
+              <img
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(marketUrl)}`}
+                className="mx-auto mb-6 rounded-xl border-2 border-slate-100 p-2 w-48 h-48"
+                alt="Código QR"
+              />
+
+              <div className="bg-slate-50 p-4 rounded-2xl mb-6 text-left">
+                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Enlace directo</label>
+                <div className="flex gap-2">
+                  <input
+                    readOnly
+                    value={marketUrl}
+                    className="flex-1 bg-white border border-slate-200 p-3 rounded-xl text-sm font-semibold text-slate-600 outline-none select-all"
+                    onClick={(e) => e.currentTarget.select()}
+                  />
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(marketUrl);
+                      alert('✅ ¡Enlace copiado!');
+                    }}
+                    className="bg-slate-900 text-white px-4 rounded-xl font-bold text-sm hover:bg-black transition"
+                    title="Copiar enlace"
+                  >
+                    Copiar
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <a
+                  href={marketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 border-2 border-slate-200 p-3 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition"
                 >
-                  Copiar
+                  <span>🔗</span> Ver Menú
+                </a>
+                <button
+                  onClick={() => window.print()}
+                  className="flex items-center justify-center gap-2 border-2 border-slate-200 p-3 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition"
+                >
+                  <span>🖨️</span> Imprimir
                 </button>
               </div>
             </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <a
-                href={`/#/menu/${currentRestaurant.slug}`}
-                target="_blank"
-                className="flex items-center justify-center gap-2 border-2 border-slate-200 p-3 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition"
-              >
-                <span>🔗</span> Ver Menú
-              </a>
-              <button
-                onClick={() => window.print()}
-                className="flex items-center justify-center gap-2 border-2 border-slate-200 p-3 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition"
-              >
-                <span>🖨️</span> Imprimir
-              </button>
-            </div>
-          </div>
-        )}
+          );
+        })()}
 
         {showPlansModal && (
           <div className="fixed inset-0 bg-black/80 z-[110] flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-200">
